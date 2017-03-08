@@ -1,0 +1,19 @@
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        int count=1;
+        int l=nums.length;
+		if(l<3){
+			return l;
+		}
+		for(int i=1;i<l -1;i++){
+			if(nums[i-1]==nums[i+1]){//前后两个相等，相当于连续三个数相等时，count不变，i++。即中间数不处理
+         continue;		
+    }
+			nums[count]=nums[i];//在前或后突变时count++。即只处理一连串相等数最前和最后的两个
+      count++;
+		}
+		count++;//最后一个数一定算入count，是结束点必然是突变点
+    nums[count-1]=nums[l-1];
+		return count;
+    }
+}
