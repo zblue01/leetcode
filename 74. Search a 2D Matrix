@@ -1,0 +1,42 @@
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix==null||matrix.length==0||matrix[0].length==0){/判断一个二维数组为空分三步，不为空null，行不为零，列不为零
+            return false;
+        }
+        int m=matrix.length;//行数
+        int n=matrix[0].length;//第一行的个数，即列数
+        int low=0;
+        int high=m-1;
+        int row=0;
+
+        while(low<=high){//确定行数
+            int mid=low+(high-low)/2;
+            if(matrix[mid][0]==target){//和每行第一个元素比较
+                return true;
+            }else if(matrix[mid][0]>target){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+         if(high<0){//比最小元素都小
+        	return false;
+        }
+        row=high;//high永远是正确的
+        
+        int left=0;
+        int right=n-1;
+        
+        while(left<=right){//确定列数
+            int middle=left+(right-left)/2;
+            if(matrix[row][middle]==target){
+                return true;
+            }else if(matrix[row][middle]>target){
+                right=middle-1;
+            }else{
+                left=middle+1;
+            }
+        }
+        return false;
+    }
+}
